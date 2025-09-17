@@ -1,25 +1,43 @@
-const mongoose=require('mongoose')
+import mongoose from "mongoose";
 const orderSchema=new mongoose.Schema({
-    id:{
+    cartId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Cart'
+        ref:'Cart',
+        required: true
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
+        required: true
     },
     shippingAddress:{
-        type:String,
+       street:
+            { type: String, required: true },
+        city:
+             { type: String, required: true },
+        state: 
+             { type: String, required: true },
+        country: 
+            { type: String, required: true },
+        pincode: 
+            { type: Number, required: true }
     },
     orderDate:{
         type:Date,
+        default: Date.now
     },
     status:{
         type:String,
+        enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
+        default: "pending"
     },
     totalAmount:{
         type:Number,
+        required: true,
+        min: 0
     }
-})
+},
+    { timestamps: true });
+
 const Order=mongoose.model('Order',orderSchema)
-module.exports=Order;
+export default Order;

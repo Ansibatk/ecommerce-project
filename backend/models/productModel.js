@@ -1,25 +1,34 @@
-const mongoose=require('mongoose')
-const Category = require('./categoryModel')
+import mongoose from "mongoose";
 const productSchema=new mongoose.Schema({
     id:{
         type:String,
     },
     name:{
         type:String,
+        required: true,
+        trim: true
     },
-    CategoryId:{
+    categoryId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Category'
+        ref:'Category',
+        required:true
     },
     price:{
         type:Number,
+        required: true,
+        min: 0
     },
     stock:{
-        type:String,
+        type:Number,
+        required: true,
+        min: 0
     },
     description:{
         type:String,
+        trim: true
     }
-})
+},
+{timestamps:true}
+);
 const Product=mongoose.model('Product',productSchema);
-module.exports=Product;
+export default Product;

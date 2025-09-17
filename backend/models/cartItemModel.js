@@ -1,22 +1,30 @@
-const mongoose=require('mongoose')
+import mongoose from"mongoose";
 const cartItemSchema=new mongoose.Schema({
     id:{
         type:String,
     },
     cartId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Cart'
+        ref:'Cart',
+        required:true
     },
     productId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Product'
+        ref:'Product',
+        required: true
     },
     quantity:{
         type:Number,
+        required: true,
+        min: 1,
+        default: 1
     },
-    Date:{
+    date:{
         type:Date,
+        default: Date.now
     }
-})
+},
+{ timestamps: true }
+);
 const CartItem=mongoose.model('CartItem',cartItemSchema)
-module.exports=CartItem;
+export default CartItem;

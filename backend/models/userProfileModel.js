@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+import mongoose from "mongoose";
 
 const profileSchema=new mongoose.Schema({
     id:{
@@ -16,7 +16,11 @@ const profileSchema=new mongoose.Schema({
     },
     gender:{
         type:String,
+        enum:["male","female","other"]//optional validation
+    }
     },
-    })
+    {
+        timestamps:true
+    });
     const Profile=mongoose.model('Profile',profileSchema)
-    module.exports=Profile;
+    export default Profile;
