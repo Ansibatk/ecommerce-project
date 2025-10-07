@@ -5,6 +5,7 @@ export const MESSAGES={
     //auth /User
     EMAIL_EXISTS:"Email already registered",
     USER_REGISTERED:"User registered successfully",
+    PROFILE_CREATED:"User profile created successfully",
     LOGIN_SUCCESS:"Login successfull",
     USERS_FETCHED:"Users fetched successfully",
     USER_FETCHED:"User fetched successfully",
@@ -12,6 +13,11 @@ export const MESSAGES={
     USER_DELETED:"User deleted successfully",
     USER_NOT_FOUND:"User not found",
     ALL_FIELDS_REQUIRED:"All fields are required",
+    PRODUCT_LIST:"Product listed successfully",
+    PRODUCT_NOT_FOUND:"The Product Cannot find",
+    PRODUCT_FOUND:"The Product finded successfully",
+    PRODUCT_EXISTS:"Product already exists",
+    PRODUCT_CREATED:"Product created successfully",
     CATEGORY:{
         CATEGORY_CREATED:"Category created successfully",
         CATEGORY_EXIST:"Category Exist",
@@ -21,6 +27,7 @@ export const MESSAGES={
         CATEGORY_DELETED:"Category deleted successfully"
     },
     ORDER:{
+        FETCHED:"get all orders for a user successfully",
         NOT_FOUND:"Order not found",
         FETCH_SUCCESS:"Orders fetched successfully",
         CREATE_SUCCESS:"Order created successfully",
@@ -29,5 +36,11 @@ export const MESSAGES={
     PRODUCT:{
           
 
+    },
+    CART:{
+       ITEM_ADDED:"Item added to cart" ,
+       ITEM_NOT_FOUND:"Item not found",
+       ITEM_REMOVED:"Item deleted successfully",
+       NOT_FOUND:"cart not found",
     }
 }
