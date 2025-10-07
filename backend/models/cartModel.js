@@ -1,5 +1,5 @@
 import mongoose from"mongoose";
-const cartModel=new mongoose.Schema({
+const cartSchema=new mongoose.Schema({
     id:{
         type:String,
     },
