@@ -7,12 +7,15 @@ const profileSchema=new mongoose.Schema({
     },
     phone:{
         type:Number,
+        required:true,
     },
     dob:{
         type:Date,
+        required:true,
     },
     gender:{
         type:String,
+        required:true,
         enum:["male","female","other"]//optional validation
     }
     },
