@@ -1,12 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import {MESSAGES} from "../constants/messages.js";
 const addressSchema=new mongoose.Schema({
-    id:{
-        type:String,
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        required:true,
     },
     type:{
         type:String,
         required: true,
-        trim: true
+        trim: true,
+        enum: ["home", "office"], // only allow these two values
     },
     street:{
         type:String,
@@ -31,6 +35,12 @@ const addressSchema=new mongoose.Schema({
     pincode:{
         type:Number,
         required:true,
+         validate: {
+      validator: function(v) {
+        return /^\d{6}$/.test(v); // 6-digit numeric pincode
+      },
+      message: MESSAGES.ADDRESS.INVALID_PINCODE // use your predefined message
+    }
  }
 },
 {
