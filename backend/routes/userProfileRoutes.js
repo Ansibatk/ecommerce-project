@@ -8,12 +8,12 @@ const router=express.Router();
 //@route POST /api/userProfiles/:userId
 //@desc create one userProfile
 router.post("/:userId",createUserProfiles);
-//@route GET /api/userProfiles/:userId
+//@route GET /api/userProfiles/
 //@desc get all userProfile
-router.get("/:userId",getAllUserProfile);
+router.get("/",getAllUserProfile);
 //@route GET /api/userProfiles/:userId
 //@desc Get one userProfile
-router.get("/id/:userId",getOneUserProfile);
+router.get("/:userId",getOneUserProfile);
 //@route PUT /api/userProfiles/:userId
 //@desc ipdate userProfile
 router.put("/:userId",updateUserProfile);
