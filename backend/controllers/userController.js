@@ -80,7 +80,7 @@ export const loginUser=async(req,res)=>{
     console.error("Login error:", error);
      return errorResponse(res,STATUS.SERVER_ERROR,MESSAGES.SERVER_ERROR)
   }}
-  //@desc Get user
+  //@desc Get All user
   //@route GET/api/users/getUser
   //@route Admin
   export const getUser=async(req,res)=>{
@@ -138,7 +138,7 @@ export const deleteUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {
-      await user.deleteOne();
+      await user.deleteOne(user._id);
       return successResponse(res, STATUS.SUCCESS, null, MESSAGES.USER_DELETED);
     } else {
       return errorResponse(res, STATUS.NOT_FOUND, MESSAGES.USER_NOT_FOUND);
