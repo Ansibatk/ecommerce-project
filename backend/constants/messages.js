@@ -42,5 +42,14 @@ export const MESSAGES={
        ITEM_NOT_FOUND:"Item not found",
        ITEM_REMOVED:"Item deleted successfully",
        NOT_FOUND:"cart not found",
+    },
+    ADDRESS:{
+        ADDRESS_CREATED:"Address created",
+        ALREADY_EXISTE:"Address is already existed",
+        ADDRESS_FETCHED:"All users Address fetched successfully",
+        USER_ADDRESS_FETCHED:"The one userAddress fetched successfully",
+        NOT_FOUND:"Address not found",
+        ADDRESS_UPDATED:"Address updated Successfully",
+        ADDRESS_DELETED:"Address deleted Successfully",
     }
 }
