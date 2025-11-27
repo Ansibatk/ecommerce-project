@@ -1,23 +1,22 @@
-import express from "express";
-import { 
-     createOrder,      deleteOrder,
-     getOrderById, getUserOrders, updateOrderStatus 
-    } from "../controllers/orderController.js";
-const router=express.Router();
+import express from 'express'
+import { placeOrder,placeOrderStripe,allOrders,userOrders,updateStatus, verifyStripe } from '../controllers/orderController.js'
+import adminAuth from '../middleware/adminAuth.js'
+import authUser from '../middleware/auth.js'
 
-//Create order (Buy Now)
-router.post("/:userId",createOrder);
+const orderRouter =express.Router()
 
-//Get all order for a user
-router.get("/user/:userId",getUserOrders);
+//Admin Features
+orderRouter.post('/list',adminAuth,allOrders)
+orderRouter.post('/status',adminAuth,updateStatus)
 
-//Get single order by Id
-router.get("/:orderId",getOrderById);
+//Payment Features
+orderRouter.post('/place',authUser,placeOrder)
+orderRouter.post('/stripe',authUser,placeOrderStripe)
 
-//Update order status
-router.put("/:orderId",updateOrderStatus);
+//User Feature
+orderRouter.post('/userorders',authUser,userOrders)
 
-//Delete order
-router.delete("/:orderId",deleteOrder);
+//verify payment
+orderRouter.post('/verifystripe',authUser, verifyStripe)
 
-export default router;
+export default orderRouter

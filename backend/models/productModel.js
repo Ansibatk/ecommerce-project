@@ -14,18 +14,31 @@ const productSchema=new mongoose.Schema({
         required: true,
         min: 0
     },
-    categoryId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Category',
+image:{
+        type:Array,
         required:true
-    },
-  stock:{
-        type:Number,
-        required: true,
-        min: 0
-    },
+},
+category:{
+        type:String,
+        required:true
+},
+subCategory:{
+        type:String,
+        required:true
+},
+sizes:{
+    type:Array,
+    required:true
+},
+bestseller:{
+        type:Boolean
+},
+date:{
+    type:Number,
+    required: true,
+}
   },
 {timestamps:true}
 );
-const Product=mongoose.model('Product',productSchema);
-export default Product;
+const productModel=mongoose.models.product || mongoose.model('product',productSchema);
+export default productModel;

@@ -1,75 +1,87 @@
 import { STATUS } from "../constants/httpStatus.js";
 import { MESSAGES } from "../constants/messages.js";
 import { errorResponse, successResponse } from "../constants/response.js";
-import Product from "../models/productModel.js";
-//@desc Create Product 
-//@route POST /api/products
-//@access Admin
-export const createProduct=async(req,res)=>{
-    try{
-        const {name,description,price,category,stock}=req.body;
-        const exists=await Product.findOne({name});
-        if(exists){
-            return errorResponse(res,STATUS.BAD_REQUEST,MESSAGES.PRODUCT_EXISTS);
-        }
-    const product=Product.create({
-        name,
-        description,
-        price,
-        category,
-        stock,
-    });
-    return successResponse(res,STATUS.CREATED,product,MESSAGES.PRODUCT_CREATED);
-}
-    catch(error){
-     return errorResponse(res,STATUS.SERVER_ERROR,MESSAGES.SERVER_ERROR);
-    }
-}
-//@desc Get All Products
-//@route GET /api/products
-//@access Public
-export const getProducts=async(req,res)=>{
-    try{
-        const products=await Product.find({}).populate("category","name");
-        return successResponse(res,STATUS.SUCCESS,products,MESSAGES.PRODUCT_LIST);
-    }
-    catch(error){
-        return errorResponse(res,STATUS.SERVER_ERROR,MESSAGES.SERVER_ERROR);
-    }
-};
-//@desc Get Single Product By Id
-//@route GET /api/products/:id
-//@access Public
-export const getProductById=async(req,res)=>{
-    try{
-        const product=await Product.findById(req.params.id).populate("category","name");
-        if(!product){
-            return errorResponse(res,STATUS.NOT_FOUND,MESSAGES.PRODUCT_NOT_FOUND);
-        }
-       return successResponse(res,STATUS.SUCCESS,product,MESSAGES.PRODUCT_FOUND);
-    }
-    catch(error){
-        return errorResponse(res,STATUS.SERVER_ERROR,MESSAGES.SERVER_ERROR);
-    }
-};
-//@desc Update Product
-//@route PUT /api/products/:id
-//@access Admin
-export const updateProduct=async(req,res)=>{
-    try{
-        const product=await Product.findById(req.params.id).populate("category","name");
+import {v2 as cloudinary} from "cloudinary";
+import productModel from "../models/productModel.js";
 
+//Function for add product
+export const addProduct =async(req,res)=>{
+    try{
+        const{name,description,price,category,subCategory,sizes,bestseller}=req.body;
 
+        const image1=req.files.image1 && req.files.image1[0]
+        const image2=req.files.image2 && req.files.image2[0]
+        const image3=req.files.image3 && req.files.image3[0]
+        const image4=req.files.image4 && req.files.image4[0]
+
+        const images=[image1,image2,image3,image4].filter((item)=>item !==undefined)
+
+        let imagesUrl=await Promise.all(
+            images.map(async(item)=>{
+                let result=await cloudinary.uploader.upload(item.path,{resource_type:'image'});
+                return result.secure_url
+            })
+        )
+
+        const productData={
+            name,
+            description,
+            category,
+            price:Number(price),
+            subCategory,
+            bestseller:bestseller === "true" ? true :false,
+            sizes:JSON.parse(sizes),
+            image:imagesUrl,
+            date:Date.now()
+        }
+console.log(productData);
+
+const product=new productModel(productData);
+await product.save()
+        
+return successResponse(res,STATUS.SUCCESS,MESSAGES.PRODUCT.PRODUCT_CREATED)
     }
     catch(error){
+        console.log(error);
+        return errorResponse(res,STATUS.BAD_REQUEST,MESSAGES.SERVER_ERROR)
         
     }
 }
-export const deleteProduct=async(req,res)=>{
+//Function for list product
+export const listProducts =async(req,res)=>{
     try{
-
+        const products=await productModel.find({});
+        return successResponse(res,STATUS.OK,MESSAGES.PRODUCT.PRODUCT_LIST,products)
     }
     catch(error){
+        console.log(error);
+        return errorResponse(res,STATUS.BAD_REQUEST,MESSAGES.PRODUCT.PRODUCT_NOT_FOUND)
         
+    }
+}
+//Function for remove product
+export const removeProduct =async(req,res)=>{
+    try{
+
+        await productModel.findByIdAndDelete(req.body._id)
+        return successResponse(res,STATUS.OK,MESSAGES.PRODUCT.PRODUCT_REMOVED)
+    }
+    catch(error){
+
+        console.log(error);
+        return errorResponse(res,STATUS.BAD_REQUEST,MESSAGES.PRODUCT.PRODUCT_NOT_FOUND)
+    }
+}
+//Function for single product info
+export const singleProduct =async(req,res)=>{
+    try{
+       
+        const{productId}=req.body;
+        const product=await productModel.findById(productId)
+        return successResponse(res,STATUS.OK,MESSAGES.PRODUCT.PRODUCT_FOUND,product)
+    }
+    catch(error){
+        console.log(error);
+        return errorResponse(res,STATUS.BAD_REQUEST,MESSAGES.PRODUCT.PRODUCT_NOT_FOUND)
     }
 }

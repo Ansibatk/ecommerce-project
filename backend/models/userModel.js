@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const userSchema=new mongoose.Schema({
-    username:{
+    name:{
         type:String,
         required: true,
         trim: true
@@ -17,14 +17,21 @@ const userSchema=new mongoose.Schema({
         required: true,
         minlength: 6
     },
+    cartData:{
+        type:Object,
+        default:{}
+    },
+   
+
     role:{
         type:String,
         enum: ['user', 'admin'], // optional
         default: 'user'
-    }
     },
-    { 
-        timestamps: true 
-    });
-const User=mongoose.model('User',userSchema)
-export default User;
+    
+   
+     },
+    {minimize:false}
+);
+const userModel=mongoose.models.user || mongoose.model('user',userSchema)
+export default userModel;

@@ -1,32 +1,28 @@
 import express from "express";
-import {createProduct,
-    deleteProduct,
-    getProductById,
-    getProducts,
-    updateProduct 
+import {addProduct,
+    removeProduct,
+    singleProduct,
+    listProducts,
     } from "../controllers/productController.js";
+import upload from "../middleware/multer.js";
+import adminAuth from "../middleware/adminAuth.js";
 
-
-const router = express.Router();
+const productRouter = express.Router();
 
 //@route POST /api/products
-//desc Create new Product
-router.post("/",createProduct);
+//desc add new Product
+productRouter.post("/add",adminAuth,upload.fields([{name:'image1',maxCount:1},{name:'image2',maxCount:1},{name:'image3',maxCount:1},{name:'image4',maxCount:1},]),addProduct);
 
-//@route GET /api/products
-//@desc Get all Products
-router.get("/",getProducts);
+//@route POST /api/products
+//@desc list all Products
+productRouter.get("/list",listProducts);
 
 //@route GET /api/Products
 //@desc Get Product by id
-router.get("/:id",getProductById);
-
-//@route PUT /api/products/:id
-//@desc Update product
-router.put("/:id",updateProduct);
+productRouter.get("/single",singleProduct);
 
 //@route DELETE /api/products/:id
-//@desc Delete product
-router.delete("/:id",deleteProduct);
+//@desc remove product
+productRouter.delete("/remove",adminAuth,removeProduct);
 
-export default router;
+export default productRouter;
