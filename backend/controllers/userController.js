@@ -6,6 +6,7 @@ import userModel from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 import validator from "validator";
 import jwt from"jsonwebtoken";
+import sendEmail from "../utils/sendEmail.js";
 //@desc Login user
 //@route POST/api/user/login
 //@access Public
@@ -85,6 +86,12 @@ export const registerUser=async(req,res)=>{
  // Use utility to generate token
     const token = generateToken(user._id,user.role)
 
+    //call email function
+    await sendEmail(
+      user.email,
+      "Welcome to Dreams4U",
+      `Hi ${user.name}, Thank you for registering!`
+    );
    return successResponse(
        res,
        STATUS.CREATED,
