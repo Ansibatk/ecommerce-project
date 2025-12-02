@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { errorResponse, successResponse } from '../constants/response.js';
+import { errorResponse} from '../constants/response.js';
 import { STATUS } from '../constants/httpStatus.js';
 import { MESSAGES } from '../constants/messages.js';
 

@@ -126,7 +126,7 @@ export const verifyStripe = async (req,res) =>{
              // Update payment status for the order
             await orderModel.findByIdAndUpdate(orderId,{payment:true})
             // Clear user's cart
-            await orderModel.findByIdAndUpdate(userId,{cartData:{}})
+            await userModel.findByIdAndUpdate(userId,{cartData:{}})
             return successResponse(res,STATUS.SUCCESS,MESSAGES.ORDER.PAYMENT_SUCCESS)
         }
         else{

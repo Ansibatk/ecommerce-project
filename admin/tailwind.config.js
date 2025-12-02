@@ -3,8 +3,7 @@ export default {
   darkMode: "class",
   content: [
     "./index.html",
-// Frontend React app (if you’re using Tailwind there too)
-    "./frontend/src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {},

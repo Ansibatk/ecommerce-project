@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -67,14 +68,15 @@ const Login = () => {
       <div className='inline-flex items-center gap-2 mb-2 mt-10'>
         <p className='prata-regular text-3xl'>{currentState}</p>
       </div>
-      {currentState === 'Login' ? '' : <input onChange={(e) => setName(e.target.value)} value={name} className='w-full px-3 py-2 border border-gray-800 ' type="text" placeholder='Name' required />}
+      {currentState === 'Login' ? '' : <input onChange={(e) => setName(e.target.value)} value={name} className='w-full px-3 py-2 border border-gray-800 dark:border-white login' type="text" placeholder='Name' required />}
 
-      <input onChange={(e) => setEmail(e.target.value)} value={email} className='w-full px-3 py-2 border border-gray-800 ' type="email" placeholder='Email' required />
+      <input onChange={(e) => setEmail(e.target.value)} value={email} className='w-full px-3 py-2 border border-gray-800 dark:border-white login' type="email" placeholder='Email' required />
 
-      <input onChange={(e) => setPassword(e.target.value)} value={password} className='w-full px-3 py-2 border border-gray-800 ' type="password" placeholder='Password' required />
+      <input onChange={(e) => setPassword(e.target.value)} value={password} className='w-full px-3 py-2 border border-gray-800 dark:border-white login' type="password" placeholder='Password' required />
 
       <div className='w-full flex justify-between text-sm mt-[-8px]'>
-        <p className='cursor-pointer'>Forgot your password?</p>
+        <p className='cursor-pointer'>
+          <Link to="/forgot-password">Forgot your password?</Link></p>
         {
           currentState === 'Login'
             ? <p onClick={() => setCurrentState('Sign Up')} className='cursor-pointer'>Create account</p> :

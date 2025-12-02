@@ -16,14 +16,8 @@ export const MESSAGES={
     ALL_FIELDS_REQUIRED:"All fields are required",
     NOT_AUTHORISED:"Not Authorised Login Again",
     NOT_AUTHORIZED_AS_ADMIN:"Unauthorised",
-    CATEGORY:{
-        CATEGORY_CREATED:"Category created successfully",
-        CATEGORY_EXIST:"Category Exist",
-        CATEGORY_NOT_FOUND:"Category not found",
-        CATEGORY_FETCHED:"Category fetched successfully",
-        CATEGORY_UPDATED:"Category updated successfully",
-        CATEGORY_DELETED:"Category deleted successfully"
-    },
+    PASSWORD_RESET_LINK:"Password reset link sent to email",
+    RESET_PASSWORD:"Password has been reset successfully",
     ORDER:{
         STATUS_UPDATED:"Order Status Updated",
         FETCHED:"get all orders for a user successfully",
@@ -54,22 +48,4 @@ export const MESSAGES={
        ITEM_REMOVED:"Item deleted successfully",
        NOT_FOUND:"cart not found",
     },
-    ADDRESS:{
-        ADDRESS_CREATED:"Address created",
-        ALREADY_EXISTE:"Address is already existed",
-        ADDRESS_FETCHED:"All users Address fetched successfully",
-        USER_ADDRESS_FETCHED:"The one userAddress fetched successfully",
-        NOT_FOUND:"Address not found",
-        ADDRESS_UPDATED:"Address updated Successfully",
-        ADDRESS_DELETED:"Address deleted Successfully",
-    },
-    PROFILE:{
-        PROFILE_CREATED:"User profile created successfully",
-        ALREADY_EXISTE:"Profile already existed",
-        PROFILES_FETCHED:"All profiles fetched successfully",
-        PROFILE_FETCHED:"One user profile fetched successfully",
-        NOT_FOUND:"The Profile not found",
-        PROFILE_UPDATED:"Profile updated successfully",
-        DELETED:"Profile deleted successfully",
-    }
 }

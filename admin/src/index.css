@@ -1,3 +1,5 @@
+@config "../tailwind.config.js";
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playpen+Sans:wght@100..800&family=Prata&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "tailwindcss";
@@ -6,17 +8,12 @@
 @tailwind utilities;
 
 
-*{
-  font-family:Outfit;
-}
 
-select,input,textarea{
-  border:1px solid #c2c2c2;
-  outline-color:#C586A5;
-  border-radius:4px;
-}
 
-.active{
-  background-color: #ffebf5;
-  border-color: #C586A5;
-}
+
+
+
+
+
+
+

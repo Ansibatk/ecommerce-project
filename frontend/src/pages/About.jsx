@@ -17,7 +17,7 @@ const About = () => {
         <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
           <p>Dreams4u was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes. </p>
           <p>Since our inception, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive collection sourced from trusted brands and suppliers.</p>
-          <b className='text-gray-800'>Our Mission</b>
+          <b className='about text-gray-800'>Our Mission</b>
           <p>At Dreams4U Clothing, our mission is to inspire confidence and comfort in every customer. We strive to offer stylish choices, effortless convenience, and a smooth shopping journey — from discovering your perfect look to fast, reliable delivery and exceptional support beyond your purchase.”</p>
         </div>
       </div>

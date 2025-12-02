@@ -77,4 +77,22 @@ a.active hr{
 .dark .select {
   background-color: #1f2937 !important;
 }
-
+.dark .search{
+  background-color: #1f2937 !important;
+  }
+.dark .search-icon{
+   filter: brightness(2) contrast(1.2);
+}
+.dark .profile{
+  background-color: #4b5563 !important;
+}
+.dark .dark-hover:hover{
+color:black !important;
+}
+.dark .about{
+  color:white !important;
+}
+.dark .login{
+  color:white !important;
+  border-color:white !important;
+}

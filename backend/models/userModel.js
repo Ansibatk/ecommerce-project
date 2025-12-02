@@ -28,10 +28,18 @@ const userSchema=new mongoose.Schema({
         enum: ['user', 'admin'], // optional
         default: 'user'
     },
-    
-   
-     },
-    {minimize:false}
+      // forgot password
+  resetPasswordToken:{
+                  type:String,
+                  default:null
+        }, 
+  resetPasswordExpire:{
+                type:Date,
+                default:null
+  } 
+},
+    { timestamps:true,
+      minimize:false}
 );
 const userModel=mongoose.models.user || mongoose.model('user',userSchema)
 export default userModel;

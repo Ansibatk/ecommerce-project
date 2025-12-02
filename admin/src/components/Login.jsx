@@ -30,22 +30,44 @@ const Login = ({ setToken }) => {
       toast.error(error.message);
     }
   };
-  
+
   return (
-    <div className="min-h-screen flex items-center justify-center w-full">
-      <div className="bg-white shadow-md rounded-lg px-8 py-6 max-w-md">
-        <h1 className="text-2xl font-bold mb-4">Admin Panel</h1>
+    <div
+      className="
+        min-h-screen flex items-center justify-center w-full
+        bg-gray-100 text-gray-900
+        dark:bg-gray-950 dark:text-gray-100
+      "
+    >
+      <div
+        className="
+          bg-white shadow-xl rounded-lg px-8 py-6 max-w-md w-full
+          border border-gray-200
+          dark:bg-gray-900 dark:border-gray-700
+        "
+      >
+        <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Admin Panel
+        </h1>
 
         <form onSubmit={onSubmitHandler}>
+
           {/* Email */}
-          <div className="mb-3 min-w-72">
-            <p className="text-sm font-medium text-gray-700 mb-2">
+          <div className="mb-4 min-w-72">
+            <p className="text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
               Email Address
             </p>
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              className="rounded-md border border-gray-300 px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black"
+              className="
+                rounded-md border border-gray-300 px-3 py-2 w-full
+                bg-white text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-black
+                dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600
+                dark:focus:ring-gray-400
+                placeholder-gray-500 dark:placeholder-gray-400
+              "
               type="email"
               placeholder="example@gmail.com"
               required
@@ -53,27 +75,40 @@ const Login = ({ setToken }) => {
           </div>
 
           {/* Password */}
-          <div className="mb-3 min-w-72">
-            <p className="text-sm font-medium text-gray-700 mb-2">
+          <div className="mb-4 min-w-72">
+            <p className="text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
               Password
             </p>
             <input
               onChange={(e) => setPassword(e.target.value)}
               value={password}
-              className="rounded-md border border-gray-300 px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-black"
+              className="
+                rounded-md border border-gray-300 px-3 py-2 w-full
+                bg-white text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-black
+                dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600
+                dark:focus:ring-gray-400
+                placeholder-gray-500 dark:placeholder-gray-400
+              "
               type="password"
               placeholder="********"
               required
             />
           </div>
 
-          {/* Button */}
+          {/* Login Button */}
           <button
-            className="mt-2 w-full py-2 px-4 rounded-md text-white bg-black hover:bg-gray-800 transition"
+            className="
+              mt-2 w-full py-2 px-4 rounded-md text-white bg-gray-900 
+              hover:bg-gray-800 transition
+              dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-gray-300
+              font-semibold
+            "
             type="submit"
           >
             Login
           </button>
+
         </form>
       </div>
     </div>

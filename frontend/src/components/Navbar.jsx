@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react';
@@ -42,6 +42,12 @@ const Navbar = () => {
           <p>CONTACT</p>
         </NavLink>
 
+        <button
+          onClick={() => window.location.href = "http://localhost:5174"}
+          className='cursor-pointer flex flex-col items-center gap-1'
+          >
+        ADMIN
+      </button>
       </ul>
 
       <div className='flex items-center gap-6'>
@@ -52,10 +58,10 @@ const Navbar = () => {
           {/* Dropdown Menu */}
           {token &&
             <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
-              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                <p className='cursor-pointer hover:text-black'>My Profile</p>
-                <p onClick={() => navigate('/orders')} className='cursor-pointer hover:text-black'>Orders</p>
-                <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
+              <div className='profile flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
+                <p className='dark-hover cursor-pointer hover:text-black dark:hover:text-black'>My Profile</p>
+                <p onClick={() => navigate('/orders')} className='dark-hover cursor-pointer hover:text-black dark:hover:text-black'>Orders</p>
+                <p onClick={logout} className='dark-hover cursor-pointer hover:text-black dark:hover:text-black'>Logout</p>
 
               </div>
             </div>}
@@ -99,6 +105,16 @@ const Navbar = () => {
           <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/collection'>COLLECTION</NavLink>
           <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/about'>ABOUT</NavLink>
           <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/contact'>CONTACT</NavLink>
+          {/* Go to admin dashboard */}
+           <button
+              onClick={() => {
+                setVisible(false);
+               window.location.href = "http://localhost:5174";
+              }}
+              className='py-2 pl-6 border   text-left'
+              >
+              ADMIN
+            </button>
         </div>
       </div>
     </div>

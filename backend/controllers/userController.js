@@ -7,6 +7,7 @@ import generateToken from "../utils/generateToken.js";
 import validator from "validator";
 import jwt from"jsonwebtoken";
 import sendEmail from "../utils/sendEmail.js";
+import crypto from "crypto";
 //@desc Login user
 //@route POST/api/user/login
 //@access Public
@@ -44,6 +45,63 @@ export const loginUser=async(req,res)=>{
      return errorResponse(res,STATUS.SERVER_ERROR,MESSAGES.SERVER_ERROR)
   }}
 
+//Route for forgot Password
+export const forgotPassword=async(req,res)=>{
+    try{
+        const {email}=req.body
+        const user=await userModel.findOne({email})
+        if(!user){
+          return errorResponse(res,STATUS.NOT_FOUND,MESSAGES.USER_NOT_FOUND)
+        }
+
+        //Generate token
+        const token=crypto.randomBytes(32).toString("hex")
+        user.resetPasswordToken=token
+        user.resetPasswordExpire=Date.now()+3600000 //1 hour
+        await user.save()
+
+        const resetLink=`${process.env.FRONTEND_URL}/reset-password/${token}`
+
+        await sendEmail({
+          from:process.env.EMAIL_FROM,
+          to:user.email,
+          subject:'Password Reset Request',
+          text:`You requested a password reset.Click here to reset: ${resetLink}`,
+        })
+        return successResponse(res,STATUS.OK,MESSAGES.PASSWORD_RESET_LINK)
+
+    }
+    catch(error){
+      return errorResponse(res,STATUS.SERVER_ERROR,MESSAGES.SERVER_ERROR)
+    }
+}
+
+//Route for Reset Password
+export const resetPassword=async(req,res)=>{
+  try{
+
+      const {token}=req.params
+      const {password}=req.body
+
+      const user=await userModel.findOne({
+         resetPasswordToken:token,
+         resetPasswordExpire:{$gt: Date.now()}
+      })
+      if(!user){
+        return errorResponse(res,STATUS.BAD_REQUEST,MESSAGES.TOKEN_INVALID)
+      }
+
+      const salt=await bcrypt.genSalt(10)
+      user.password=await bcrypt.hash(password,salt)
+      user.resetPasswordToken=null,
+      user.resetPasswordExpire=null
+      await user.save()
+      return successResponse(res,STATUS.OK,MESSAGES.RESET_PASSWORD)
+  }
+  catch(error){
+       return errorResponse(res,STATUS.SERVER_ERROR,MESSAGES.SERVER_ERROR)
+  }
+}
 //Route for user register
 export const registerUser=async(req,res)=>{
 
@@ -87,11 +145,11 @@ export const registerUser=async(req,res)=>{
     const token = generateToken(user._id,user.role)
 
     //call email function
-    await sendEmail(
-      user.email,
-      "Welcome to Dreams4U",
-      `Hi ${user.name}, Thank you for registering!`
-    );
+    await sendEmail({
+      to:user.email,
+      subject:"Welcome to Dreams4U",
+      text:`Hi ${user.name}, Thank you for registering!`
+  });
    return successResponse(
        res,
        STATUS.CREATED,

@@ -12,7 +12,7 @@ const transporter=nodemailer.createTransport({
     }
     })
 
-    const sendEmail =async(to,subject,text)=>{
+    const sendEmail =async({from,to,subject,text})=>{
         try{
             await transporter.sendMail({
                 from:process.env.EMAIL_FROM,
@@ -20,9 +20,7 @@ const transporter=nodemailer.createTransport({
                 subject,
                 text,
                 })
-            console.log("Email sent successfully");
-    
-        }
+            }
         catch(error){
             console.error("Email sending error:", error);
             console.error(error);
