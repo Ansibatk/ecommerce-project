@@ -1,4 +1,3 @@
-import React from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
 import NewsletterBox from '../components/NewsletterBox'
@@ -19,7 +18,7 @@ const Contact = () => {
           <p className='text-gray-500'>Tel: (481) 888-0143 <br />Email:admin@dreams4u.com</p>
           <p className='font-semibold text-xl text-gray-600'>Careers at Dreams4U</p>
           <p className='text-gray-500'>Learn more about our teams and job openings.</p>
-          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore More</button>
+          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500 contact-button'>Explore More</button>
         </div>
       </div>
       <NewsletterBox />

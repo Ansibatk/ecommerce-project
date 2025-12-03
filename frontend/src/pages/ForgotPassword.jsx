@@ -11,7 +11,7 @@ const ForgotPassword = () => {
 
         try {
 
-            const res = await fetch('http://localhost:5000/api/user/forgot-password', {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email }),

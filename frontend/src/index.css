@@ -105,5 +105,14 @@ color:black !important;
     transform: translateY(0);
   }
 }
-
-
+/* Change Chrome/Edge password reveal eye icon color in dark mode */
+.dark input[type="password"]::-ms-reveal,
+.dark input[type="password"]::-ms-clear {
+  filter: invert(1);
+}
+.dark .policy-icon{
+  filter:invert(1)
+}
+.dark .contact-button{
+  border-color: white;
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { useSearchParams } from 'react-router-dom'
 import {toast} from 'react-toastify'
@@ -22,10 +22,12 @@ const Verify = () => {
 
             if(response.data.success){
                setCartItems({})
-               navigate('/orders') 
+               navigate('/orders')
+               toast.success('Payment Successfull') 
             }
             else{
                 navigate('/cart')
+                toast.error('Payment unsuccessfull! try again')
             }
           }
           catch(error){

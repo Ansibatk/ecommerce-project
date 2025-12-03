@@ -67,7 +67,6 @@ const PlaceOrder = () => {
 
           if (response.data.success) {
             setCartItems({})
-            toast.success('Payment successfull')
             navigate('/orders')
           }
           else {
