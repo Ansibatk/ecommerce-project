@@ -55,8 +55,6 @@ import p_img51 from './p_img51.png'
 import p_img52 from './p_img52.png'
 import p_img53 from './p_img53.png'
 import p_img54 from './p_img54.png'
-
-
 import logo from './logo.png'
 import hero_img from './hero_img.png'
 import cart_icon from './cart_icon.png'
@@ -743,6 +741,5 @@ export const products = [
     sizes: ["S", "M", "L", "XL"],
     date: 1716751000000,
     bestseller: true
-}
-
+},
 ]

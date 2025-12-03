@@ -36,10 +36,6 @@ a.active hr{
   filter: brightness(2) contrast(1.2);
 }
 
-/* body {
-  @apply bg-white text-black transition-colors;
-} */
-
 .dark body {
   @apply bg-gray-900 text-white transition-colors;
 }
@@ -96,3 +92,18 @@ color:black !important;
   color:white !important;
   border-color:white !important;
 }
+/* give style to hero text */
+.text-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
