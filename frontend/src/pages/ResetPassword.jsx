@@ -1,16 +1,12 @@
-import { useContext } from 'react'
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { ShopContext } from '../context/ShopContext'
-
 
 const ResetPassword = () => {
   const { token } = useParams();
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState('')
-  const { navigate } = useContext(ShopContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -64,8 +60,9 @@ const ResetPassword = () => {
           type="submit">Reset Password</button>
       </form>
       <div className='mt-3 flex flex-col items-center'>
-        <Link className="text-blue-500 dark:text-blue-400 hover:hover:text-blue-700 underline"
-          onClick={navigate('/login')}>Go to Login Page</Link>
+        <Link to="/login"
+          className="text-blue-500 dark:text-blue-400 hover:hover:text-blue-700 underline"
+        >Go to Login Page</Link>
       </div>
     </>
   )
