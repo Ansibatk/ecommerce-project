@@ -41,5 +41,4 @@ const ForgotPassword = () => {
     )
 }
 export default ForgotPassword
-// {loading?'Sending....':'Send Reset Link'}
-// export default ForgotPassword
+
